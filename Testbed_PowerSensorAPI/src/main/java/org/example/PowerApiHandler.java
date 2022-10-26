@@ -1,5 +1,6 @@
 package org.example;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.glassfish.grizzly.http.server.HttpHandler;
 import org.glassfish.grizzly.http.server.Request;
 import org.glassfish.grizzly.http.server.Response;
@@ -21,6 +22,9 @@ public class PowerApiHandler extends HttpHandler {
         }
         String requestBody = requestBodyBuffer.toStringContent();
 
+        ObjectMapper mapper = new ObjectMapper();
+
         // Do something with the request
+        PowerApiRequestBody powerApiRequestBody = mapper.readValue(requestBody, PowerApiRequestBody.class);
     }
 }
